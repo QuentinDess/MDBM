@@ -1,19 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Movie DATABASE !{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    {% block stylesheets %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% endblock %}
+
+
+</head>
+<body>
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('home')}}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('actors')}}">Acteurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('genres')}}">Genres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('studios')}}">Studios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('about')}}">A propos</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="my-2 my-lg-0">
+                {% if app.user is null %}
+                <a href="{{ path('app_login')}}">
+                    <button class="btn btn-success my-2 my-sm-0" >Login</button>
+                </a>
+                <a href="{{ path('app_login')}}">
+                    <button class="btn btn-success my-2 my-sm-0" >Register</button>
+                </a>
+                {% else %}
+                    <h4>Bienvennue {{ app.user.username }}</h4>
+                <a href="{{ path('app_logout')}}">
+                    <button class="btn btn-success my-2 my-sm-0" >Logout</button>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+{% block body %}{% endblock %}
+{% block javascripts %}
+{% endblock %}
+<script src="https://kit.fontawesome.com/998d334f2c.js" crossorigin="anonymous"></script>
+</body>
 </html>

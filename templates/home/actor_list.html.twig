@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Tout les Acteurs</h1>
+</div>
+    <div class="container">
+        <div class="row">
+            {% for actor in actors %}
+
+                <div class="col-md-4">
+                    <a href="/actor/{{ actor.id }}">
+                    <div class="card actor ">
+                        <h3 class="card-header">{{actor.firstName}} {{ actor.lastname }}</h3>
+                        {% if actor.image starts with 'http' %}
+                            <img class="rounded-circle z-depth-2" style="max-width: 100%" src="{{ actor.image }}" alt={{actor.firstName}} {{ actor.lastname }} />
+                        {% else %}
+                            <img class="rounded-circle z-depth-2" style="max-width: 100%" src="/assets/upload/images/{{ actor.image }}" alt={{actor.firstName}} {{ actor.lastname }} />
+                        {% endif %}
+                        <div class="card-body">
+                            <h4>Filmographie</h4>
+                            <ul>
+                                {% for movie in actor.movies %}
+                                    <li>{{ movie.name }} <em>{{ movie.releaseDate|date("Y") }}</em></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row about">
+            <div class="col-md-3">
+                <h2>Auteur</h2>
+                <p>Quentin Dessartine</p>
+            </div>
+            <div class="col-md-3">
+                <h2>Librairies</h2>
+                <ul>
+                    <li><a href="https://github.com/fzaninotto/Faker">Faker </a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h2>Assets</h2>
+                <ul>
+                    <li><a href="https://loremflickr.com/">Le faker image de chachats</a></li>
+                    <li><a href="https://bootswatch.com/superhero/">Le super theme bootswatch</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

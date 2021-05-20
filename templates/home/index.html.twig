@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+{% endblock %}
+{% set map = {
+    "1": { 'color':'text-success'},
+    '0': { 'color':'text-danger'}
+} %}
+{% block body %}
+
+    <div class="wrap">
+        <div class="container movies">
+            <div class="row">
+                {% for movie in movies %}
+                    <div class="card movie col-md-3 ">
+                        <div class="card-body">
+                            <a href="movie/{{ movie.id }}">
+                                <h5 class="card-title">{{ movie.name }}</h5>
+                            </a>
+                            {% if movie.image starts with 'http' %}
+                                <img style="max-width: 100%" src="{{ movie.image }}" alt={{movie.name}} />
+                            {% else %}
+                                <img style="max-width: 100%" src="/assets/upload/images/{{ movie.image }}" alt={{movie.name}} />
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Synopsis: {{ movie.synopsis | raw }}</p>
+                        </div>
+                        <div class="card body">
+                            <h4 class="card-header">Acteurs:</h4>
+                            <ul class="list-group list-group-flush">
+                                {% for actor in movie.actors %}
+                                    <li class="list-group-item">{{ actor.firstName }} {{ actor.lastName }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card body mt-3">
+                            <h4 class="card-header">Production :</h4>
+                            <ul class="list-group list-group-flush">
+                                {% for studio in movie.studios %}
+                                    <li class="list-group-item">{{ studio.name }} </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card body mt-3">
+                            <h4 class="card-header">Genre :</h4>
+                            <ul class="list-group list-group-flush">
+                                {% for genre in movie.genres %}
+                                    <li class="list-group-item">{{ genre.name }} </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>{{ movie.releaseDate |date("d/m/Y") }}</p>
+                            <div>
+                                <i class="fas fa-eye {{ map[movie.seen].color }}"></i>
+                                <i class="fas fa-check-square {{ map[movie.watchList].color }}"></i>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <div>
+                <h3 class="card-header">Genres :</h3>
+                <ul class="list-group">
+                    {%  for genre in genres %}
+                        <a href="/genre/{{ genre.id }}">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ genre.name }}
+                                <span class="badge bg-primary rounded-pill">{{ genre.movies|length }}</span>
+                            </li>
+                        </a>
+
+                    {% endfor %}
+                </ul>
+            </div >
+            <div class="mt-5">
+                <h3 class="card-header">Studios :</h3>
+                <ul class="list-group">
+                    {%  for studio in studios %}
+                        <a href="/studio/{{ studio.id }}">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ studio.name }}
+                                <span class="badge bg-primary rounded-pill">{{ studio.movies|length }}</span>
+                            </li>
+                        </a>
+
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

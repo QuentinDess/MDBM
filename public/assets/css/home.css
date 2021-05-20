@@ -1,0 +1,57 @@
+.presentation{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+
+}
+.presentation> .rubrique{
+    height: fit-content;
+}
+.rubriques{
+
+    display: flex;
+    width: unset;
+    flex-direction: column;
+    align-content: normal;
+    align-items: flex-end;
+
+}
+div.container.rubriques > a > div > div.card-body{
+    display: flex;
+    justify-content: space-between;
+}
+div.container.rubriques > a > div > div.card-body > i{
+    font-size: 40px;
+    margin-right: 5%;
+}
+div> h1{
+    margin-top: 20%;
+}
+.wrap{
+    display: flex;
+}
+.sidebar{
+    margin-right: 20%;
+}
+.sidebar,.movies{
+
+    margin-top: 10%;
+max-width: unset;
+}
+.sidebar{
+    margin-right: 5%;
+}
+.movie{
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+.fas{
+    font-size: 3rem;
+}
+.actor{
+    margin: 1%;
+}
+a{color: white; text-decoration: none}
+.genre,.studio{display: flex; flex-direction: row;
+margin: 5%}
+.about{margin-top: 50%}

@@ -1,0 +1,29 @@
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Tout les Genres</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for genre in genres %}
+
+                <div class="col-md-4">
+                    <a href="/genre/{{ genre.id }}">
+                        <div class="card genre ">
+                            <h3 class="card-header">{{ genre.name }}   <span class="badge bg-primary rounded-pill">{{ genre.movies|length }}</span></h3>
+                            <i class="card-header fas fa-video"></i>
+                        </div>
+                    </a>
+                </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
